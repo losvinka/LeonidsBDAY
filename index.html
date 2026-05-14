@@ -50,7 +50,33 @@
           opacity: 0;
         }
       }
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 40px; /* Заголовок на мобильных */
+        }
 
+        .rsvp-title {
+          font-size: 28px; /* Заголовок формы */
+        }
+
+        .description {
+          font-size: 18px; /* Описание */
+        }
+
+        input[type="text"] {
+          font-size: 16px;
+          padding: 14px 16px;
+        }
+
+        button {
+          font-size: 18px;
+          padding: 16px;
+        }
+
+        .glass {
+          padding: 30px 20px; /* Уменьшаем внутренние отступы на мобиле */
+        }
+      }
       .bg-glow {
         position: fixed;
         inset: 0;
