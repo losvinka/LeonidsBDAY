@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <title>День рождения Леонида</title>
+
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+
       body {
         font-family: Georgia, serif;
         background: #06111f;
@@ -27,12 +29,14 @@
         overflow: hidden;
         pointer-events: none;
       }
+
       .circle {
         position: absolute;
         border-radius: 50%;
         opacity: 0.3;
         animation: floatCircle linear infinite;
       }
+
       @keyframes floatCircle {
         0% {
           transform: translateY(100vh) translateX(0) scale(1);
@@ -47,6 +51,29 @@
         }
       }
 
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 40px;
+        }
+        .rsvp-title {
+          font-size: 28px;
+        }
+        .description {
+          font-size: 18px;
+        }
+        input[type="text"] {
+          font-size: 16px;
+          padding: 14px 16px;
+        }
+        button {
+          font-size: 18px;
+          padding: 16px;
+        }
+        .glass {
+          padding: 30px 20px;
+        }
+      }
+
       .bg-glow {
         position: fixed;
         inset: 0;
@@ -58,13 +85,12 @@
         z-index: 1;
       }
 
-      /* ---------- CONTAINER ---------- */
       .container {
         position: relative;
         z-index: 2;
         max-width: 1300px;
         margin: auto;
-        padding: 40px 20px;
+        padding: 80px 40px;
       }
 
       .hero {
@@ -72,11 +98,15 @@
         align-items: center;
         justify-content: space-between;
         gap: 60px;
+        min-height: 100vh;
         flex-wrap: wrap;
       }
+
       .hero-text {
         flex: 1;
+        min-width: 320px;
       }
+
       .hero-label {
         text-transform: uppercase;
         letter-spacing: 8px;
@@ -86,6 +116,7 @@
         color: #cddcff;
         font-size: 14px;
       }
+
       h1 {
         font-size: 90px;
         line-height: 0.95;
@@ -93,12 +124,14 @@
         margin-bottom: 40px;
         color: #f5f8ff;
       }
+
       .line {
         width: 100px;
         height: 1px;
         background: rgba(255, 255, 255, 0.3);
         margin-bottom: 40px;
       }
+
       .description {
         font-size: 22px;
         line-height: 1.8;
@@ -112,8 +145,10 @@
         display: flex;
         justify-content: center;
         position: relative;
+        min-width: 320px;
       }
 
+      /* ---------- PHOTO CARD ---------- */
       .photo-card {
         position: relative;
         width: 100%;
@@ -136,6 +171,7 @@
         width: 100%;
         height: 100%;
       }
+
       .hero-slider img {
         position: absolute;
         top: 50%;
@@ -145,18 +181,21 @@
         transform: translate(-50%, -50%);
         opacity: 0;
         border-radius: 30px;
-        animation: heroFade 12s infinite;
+        animation: heroFade 15s infinite;
         object-fit: contain;
       }
+
+      /* для 3 фото */
       .hero-slider img:nth-child(1) {
         animation-delay: 0s;
       }
       .hero-slider img:nth-child(2) {
-        animation-delay: 4s;
+        animation-delay: 5s;
       }
       .hero-slider img:nth-child(3) {
-        animation-delay: 8s;
+        animation-delay: 10s;
       }
+
       @keyframes heroFade {
         0% {
           opacity: 0;
@@ -190,6 +229,7 @@
         text-align: center;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
       }
+
       .small-label {
         text-transform: uppercase;
         letter-spacing: 6px;
@@ -199,6 +239,7 @@
         color: #d7e2ff;
         font-size: 13px;
       }
+
       .date {
         font-size: 72px;
         margin-bottom: 20px;
@@ -226,12 +267,14 @@
         margin-bottom: 40px;
         font-weight: 300;
       }
+
       form {
         max-width: 700px;
         margin: auto;
         text-align: left;
         font-family: Arial, sans-serif;
       }
+
       label {
         display: block;
         margin-bottom: 15px;
@@ -240,6 +283,7 @@
         opacity: 0.7;
         font-size: 12px;
       }
+
       input[type="text"] {
         width: 100%;
         padding: 18px 20px;
@@ -247,18 +291,20 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
         background: rgba(0, 0, 0, 0.3);
         color: white;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         font-size: 18px;
       }
+
       .checkbox {
         display: flex;
         align-items: center;
         gap: 15px;
-        margin-bottom: 35px;
+        margin-bottom: 10px;
         text-transform: none;
         letter-spacing: normal;
         font-size: 20px;
       }
+
       button {
         width: 100%;
         padding: 20px;
@@ -270,9 +316,19 @@
         cursor: pointer;
         transition: 0.3s ease;
       }
+
       button:hover {
         transform: scale(1.02);
       }
+
+      .wait-note {
+        margin-top: 10px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        text-align: center;
+      }
+
       footer {
         text-align: center;
         margin-top: 80px;
@@ -283,52 +339,25 @@
         padding-bottom: 40px;
       }
 
-      /* ---------- MOBILE ADAPTIVE ---------- */
       @media (max-width: 900px) {
-        .hero-image img {
-          max-height: 400px;
-        }
-      }
-      @media (max-width: 600px) {
-        .hero {
-          flex-direction: column;
-          gap: 20px;
-          align-items: center;
-        }
-        .hero-text {
-          text-align: center;
-          width: 100%;
-        }
-        .hero-image {
-          width: 100%;
-        }
-      }
-      @media (max-width: 480px) {
         h1 {
-          font-size: 36px;
-          line-height: 1.1;
+          font-size: 58px;
         }
-        .rsvp-title {
-          font-size: 28px;
-        }
-        .description,
-        .place-text {
-          font-size: 16px;
-          line-height: 1.4;
-        }
-        input[type="text"],
-        button {
-          font-size: 16px;
-          padding: 14px 16px;
+        .date {
+          font-size: 48px;
         }
         .glass {
-          padding: 20px;
+          padding: 35px 25px;
+        }
+        .photo-card img {
+          max-height: 500px;
         }
       }
     </style>
   </head>
+
   <body>
-    <!-- фоновые шарики -->
+    <!-- анимированные кружочки -->
     <div class="circles-bg">
       <div
         class="circle"
@@ -338,7 +367,7 @@
           background: radial-gradient(circle, #4d7bff, #1c1f4d);
           left: 10%;
           top: 80%;
-          animation-duration: 15s;
+          animation-duration: 25s;
         "
       ></div>
       <div
@@ -349,7 +378,7 @@
           background: radial-gradient(circle, #ff4da0, #1c1f4d);
           left: 50%;
           top: 90%;
-          animation-duration: 20s;
+          animation-duration: 35s;
         "
       ></div>
       <div
@@ -360,7 +389,7 @@
           background: radial-gradient(circle, #ffb84d, #1c1f4d);
           left: 80%;
           top: 70%;
-          animation-duration: 18s;
+          animation-duration: 30s;
         "
       ></div>
       <div
@@ -371,7 +400,7 @@
           background: radial-gradient(circle, #4dffea, #1c1f4d);
           left: 30%;
           top: 60%;
-          animation-duration: 17s;
+          animation-duration: 28s;
         "
       ></div>
     </div>
@@ -392,6 +421,7 @@
             компания.
           </div>
         </div>
+
         <div class="hero-image">
           <div class="photo-card">
             <div class="hero-slider">
@@ -435,6 +465,10 @@
             <input type="checkbox" id="late" /> Я немного опоздаю
           </label>
           <button type="submit">Отправить</button>
+          <div class="wait-note">
+            После нажатия немного подождите до появления уведомления о
+            подтверждении.
+          </div>
         </form>
       </section>
 
