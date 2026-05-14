@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <title>День рождения Леонида</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Georgia, serif;
+        background: #06111f;
+        color: white;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* ---------- ANIMATED CIRCLES BACKGROUND ---------- */
+      .circles-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: floatCircle linear infinite;
+      }
+
+      @keyframes floatCircle {
+        0% {
+          transform: translateY(100vh) translateX(0) scale(1);
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-200px) translateX(50px) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      .bg-glow {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(
+          circle at top,
+          rgba(77, 123, 255, 0.25),
+          transparent 50%
+        );
+        z-index: 1;
+      }
+
+      .container {
+        position: relative;
+        z-index: 2;
+        max-width: 1300px;
+        margin: auto;
+        padding: 80px 40px;
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        min-height: 100vh;
+        flex-wrap: wrap;
+      }
+
+      .hero-text {
+        flex: 1;
+        min-width: 320px;
+      }
+
+      .hero-label {
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        opacity: 0.7;
+        margin-bottom: 25px;
+        font-family: Arial, sans-serif;
+        color: #cddcff;
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 90px;
+        line-height: 0.95;
+        font-weight: 300;
+        margin-bottom: 40px;
+        color: #f5f8ff;
+      }
+
+      .line {
+        width: 100px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+        margin-bottom: 40px;
+      }
+
+      .description {
+        font-size: 22px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.8);
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        min-width: 320px;
+      }
+
+      .photo-card {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        min-height: 650px;
+        border-radius: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        background: rgba(11, 23, 40, 0.7);
+        backdrop-filter: blur(20px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 20px;
+      }
+
+      .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-slider img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-width: 100%;
+        max-height: 100%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        border-radius: 30px;
+        animation: heroFade 15s infinite;
+        object-fit: contain;
+      }
+
+      /* для 3 фото */
+      .hero-slider img:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .hero-slider img:nth-child(2) {
+        animation-delay: 5s;
+      }
+      .hero-slider img:nth-child(3) {
+        animation-delay: 10s;
+      }
+
+      /* изменяем keyframes, чтобы каждая фото показывалась дольше */
+      @keyframes heroFade {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        8% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.02);
+        }
+        33% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.02);
+        }
+        38% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      .glass {
+        margin-top: 80px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 32px;
+        padding: 60px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .small-label {
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        opacity: 0.6;
+        margin-bottom: 30px;
+        font-family: Arial, sans-serif;
+        color: #d7e2ff;
+        font-size: 13px;
+      }
+      .date {
+        font-size: 72px;
+        margin-bottom: 20px;
+        color: #f5f8ff;
+      }
+      .time {
+        font-size: 36px;
+        margin-bottom: 35px;
+        opacity: 0.9;
+      }
+      .place-text {
+        font-size: 24px;
+        line-height: 1.8;
+        opacity: 0.8;
+        font-family: Arial, sans-serif;
+      }
+      .address {
+        display: inline-block;
+        margin-top: 25px;
+        font-size: 24px;
+        color: #9fc2ff;
+      }
+      .rsvp-title {
+        font-size: 50px;
+        margin-bottom: 40px;
+        font-weight: 300;
+      }
+      form {
+        max-width: 700px;
+        margin: auto;
+        text-align: left;
+        font-family: Arial, sans-serif;
+      }
+      label {
+        display: block;
+        margin-bottom: 15px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        opacity: 0.7;
+        font-size: 12px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 18px 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        margin-bottom: 30px;
+        font-size: 18px;
+      }
+      .checkbox {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 35px;
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: 20px;
+      }
+      button {
+        width: 100%;
+        padding: 20px;
+        border: none;
+        border-radius: 20px;
+        background: #dce8ff;
+        color: black;
+        font-size: 20px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      button:hover {
+        transform: scale(1.02);
+      }
+      footer {
+        text-align: center;
+        margin-top: 80px;
+        opacity: 0.4;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-size: 14px;
+        padding-bottom: 40px;
+      }
+
+      @media (max-width: 900px) {
+        h1 {
+          font-size: 58px;
+        }
+        .date {
+          font-size: 48px;
+        }
+        .glass {
+          padding: 35px 25px;
+        }
+        .photo-card img {
+          max-height: 500px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- анимированные кружочки -->
+    <div class="circles-bg">
+      <div
+        class="circle"
+        style="
+          width: 150px;
+          height: 150px;
+          background: radial-gradient(circle, #4d7bff, #1c1f4d);
+          left: 10%;
+          top: 80%;
+          animation-duration: 25s;
+        "
+      ></div>
+      <div
+        class="circle"
+        style="
+          width: 100px;
+          height: 100px;
+          background: radial-gradient(circle, #ff4da0, #1c1f4d);
+          left: 50%;
+          top: 90%;
+          animation-duration: 35s;
+        "
+      ></div>
+      <div
+        class="circle"
+        style="
+          width: 200px;
+          height: 200px;
+          background: radial-gradient(circle, #ffb84d, #1c1f4d);
+          left: 80%;
+          top: 70%;
+          animation-duration: 30s;
+        "
+      ></div>
+      <div
+        class="circle"
+        style="
+          width: 120px;
+          height: 120px;
+          background: radial-gradient(circle, #4dffea, #1c1f4d);
+          left: 30%;
+          top: 60%;
+          animation-duration: 28s;
+        "
+      ></div>
+    </div>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+      <section class="hero">
+        <div class="hero-text">
+          <div class="hero-label">Birthday Invitation</div>
+          <h1>День<br />Рождения<br />Леонида</h1>
+          <div class="line"></div>
+          <div class="description">
+            Дорогие друзья!<br /><br />
+            С огромной радостью приглашаю вас разделить со мной особенный вечер
+            — празднование моего дня рождения.<br /><br />
+            Нас ждёт уютная атмосфера, вкусный ужин, музыка и прекрасная
+            компания.
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <div class="photo-card">
+            <div class="hero-slider">
+              <img src="images/photo1.jpg" />
+              <img src="images/photo3.jpg" />
+              <img src="images/photo4.jpg" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass">
+        <div class="small-label">Время и место</div>
+        <div class="date">29 / 05 / 2026</div>
+        <div class="time">18:00</div>
+        <div class="place-text">
+          Приглашаем на празднование дня рождения в ресторане «Гранатовый
+          сад»<br />
+          по адресу:
+        </div>
+        <a
+          href="https://yandex.ru/maps/org/granatovy_sad_1/1773624479/?ll=37.752819%2C55.644801&z=15"
+          target="_blank"
+          class="address"
+        >
+          Поречная ул., 5/14с1, Москва
+        </a>
+      </section>
+
+      <section class="glass">
+        <div class="rsvp-title">Подтверждение присутствия</div>
+        <form id="rsvpForm">
+          <label>ФИО</label>
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Введите ваше имя"
+            required
+          />
+          <label class="checkbox">
+            <input type="checkbox" id="late" /> Я немного опоздаю
+          </label>
+          <button type="submit">Отправить</button>
+        </form>
+      </section>
+
+      <footer>Буду рад видеть вас на праздновании</footer>
+    </div>
+
+    <script>
+      document
+        .getElementById("rsvpForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const data = {
+            fullName: document.getElementById("fullName").value,
+            late: document.getElementById("late").checked ? "Да" : "Нет",
+          };
+          try {
+            await fetch(
+              "https://script.google.com/macros/s/AKfycbzDFhnHDgMYCpUm1IUyzpSC3E7cfq9V0l9U1aMegAW9dP7udzYilnHtgDoKnVokxMFVTQ/exec",
+              {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              },
+            );
+            alert("Спасибо! Ваш ответ отправлен 🎉");
+            document.getElementById("rsvpForm").reset();
+          } catch (err) {
+            alert("Ошибка отправки формы");
+          }
+        });
+    </script>
+  </body>
+</html>
